@@ -1,26 +1,25 @@
 <template>
   <v-row>
-    <v-col cols="6">
-      <league-table></league-table>
-    </v-col>
-    <v-col cols="6">
-      <league-table></league-table>
-    </v-col>
-    <v-col cols="6">
-      <league-table></league-table>
-    </v-col>
-    <v-col cols="6">
-      <league-table></league-table>
+    <v-col cols="12" v-for="code in league" :key="code">
+      <fetch-league-data :league-code="code"></fetch-league-data>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import LeagueTable from "@/components/LeagueTable.vue";
+import FetchLeagueData from "@/components/FetchLeagueData.vue";
 export default {
   name: "MainPage",
   components: {
-    LeagueTable,
+    FetchLeagueData,
+  },
+  data() {
+    return {
+      league: ["PD", "PL", "SA", "FL1"],
+    };
+  },
+  created() {
+    this.$vuetify.lang.current = "ko";
   },
 };
 </script>
