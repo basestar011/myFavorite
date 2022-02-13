@@ -1,7 +1,7 @@
 <template>
   <v-card outlined>
     <v-card-title class="d-flex justify-center">
-      {{ $vuetify.lang.t(`$vuetify.league.${name}`) }}
+      {{ `league.${name}` | translate }}
     </v-card-title>
     <v-data-table
       :headers="headers"
@@ -58,10 +58,6 @@ export default {
       ],
     };
   },
-  // created() {
-  //   this.$vuetify.lang.current = "ko";
-  //   console.log(this.$vuetify.lang);
-  // },
 };
 </script>
 

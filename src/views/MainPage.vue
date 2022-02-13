@@ -18,9 +18,6 @@ export default {
       league: ["PD", "PL", "SA", "FL1"],
     };
   },
-  created() {
-    this.$vuetify.lang.current = "ko";
-  },
 };
 </script>
 <style></style>
