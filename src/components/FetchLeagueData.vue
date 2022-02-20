@@ -35,7 +35,7 @@ export default {
         this.league = competition.name;
         this.fetchedData = standings[0].table.map((data) => ({
           ...data,
-          team: data.team.name,
+          team: data.team.id,
           id: data.team.id,
           logo: data.team.crestUrl,
         }));

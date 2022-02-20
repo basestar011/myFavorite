@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12" v-for="code in league" :key="code">
-      <fetch-league-data :league-code="code"></fetch-league-data>
+      <fetch-league-data :league-code="code" />
     </v-col>
   </v-row>
 </template>
