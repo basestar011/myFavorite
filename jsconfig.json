@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./src/*"],
+      // 해당 경로에 module이 없다면 /* 까지 잡아주고,
+      "@views/*": ["./src/views/*"],
+      // module이 있으면 /* 를 생략한다.
+      // "@my": ["./src/components/my"],
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
