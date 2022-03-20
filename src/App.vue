@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-toolbar-title> My Favorite </v-toolbar-title>
+      <v-toolbar-title class="title">
+        <router-link :to="{ name: 'Main' }">My Favorite</router-link>
+      </v-toolbar-title>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -11,4 +13,9 @@
   </v-app>
 </template>
 
-<style></style>
+<style>
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+</style>

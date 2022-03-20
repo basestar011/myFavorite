@@ -1,17 +1,18 @@
 <template>
   <v-row>
     <v-col cols="12" v-for="code in league" :key="code">
-      <fetch-league-data :league-code="code" />
+      <LeagueTable :code="code" />
     </v-col>
   </v-row>
 </template>
 
 <script>
-import FetchLeagueData from "@/components/FetchLeagueData.vue";
+import LeagueTable from "@table/LeagueTable.vue";
+
 export default {
   name: "MainPage",
   components: {
-    FetchLeagueData,
+    LeagueTable,
   },
   data() {
     return {

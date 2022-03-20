@@ -11,7 +11,13 @@ const router = new VueRouter({
       path: "/",
       name: "Main",
       component: () =>
-        import(/* webpackChunkName: "main" */ "@/views/MainPage.vue"),
+        import(/* webpackChunkName: "main" */ "@views/MainPage.vue"),
+    },
+    {
+      path: "/team/:id",
+      name: "Team Page",
+      component: () =>
+        import(/* webpackChunkName: "team" */ "@views/TeamPage.vue"),
     },
   ],
 });

@@ -1,54 +1,31 @@
 <template>
-  <v-card outlined>
-    <v-card-title class="d-flex justify-center">
-      {{ `league.${name}` | translate }}
-    </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="items"
-      :item-key="items.id"
-      dense
-      disable-sort
-      disable-filtering
-      disable-pagination
-      hide-default-footer
-      hide-default-header
-      :loading="loading"
-      loading-text="로딩중!!"
-    >
-      <template #header="{ props: { headers } }">
-        <thead>
-          <tr>
-            <th v-for="(header, i) in headers" :key="i" :class="header.class">
-              <span>{{ header.text }}</span>
-            </th>
-          </tr>
-        </thead>
-      </template>
-      <template #item.team="{ item }">
-        <div class="d-flex">
-          <img :src="item.logo" width="20px" height="20px" class="mr-2" />
-          {{ `teams.${item.team}` | translate }}
-        </div>
-      </template>
-    </v-data-table>
-  </v-card>
+  <FetchLeagueData :code="code">
+    <template v-slot="{ loading }">
+      <LeagueTableTitle :leagueCode="code" />
+      <LeagueTableData
+        :headers="headers"
+        :leagueCode="code"
+        :loading="loading"
+      />
+    </template>
+  </FetchLeagueData>
 </template>
 
 <script>
+import FetchLeagueData from "@data/FetchLeagueData.vue";
+import LeagueTableTitle from "./LeagueTableTitle.vue";
+import LeagueTableData from "./LeagueTableData.vue";
+
 export default {
   name: "LeagueTable",
+  components: {
+    FetchLeagueData,
+    LeagueTableTitle,
+    LeagueTableData,
+  },
   props: {
-    name: {
+    code: {
       type: String,
-      default: () => "리그",
-    },
-    items: {
-      type: Array,
-      required: true,
-    },
-    loading: {
-      type: Boolean,
       required: true,
     },
   },
