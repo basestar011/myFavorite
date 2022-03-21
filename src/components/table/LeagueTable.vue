@@ -1,25 +1,17 @@
 <template>
-  <FetchLeagueData :code="code">
-    <template v-slot="{ loading }">
-      <LeagueTableTitle :leagueCode="code" />
-      <LeagueTableData
-        :headers="headers"
-        :leagueCode="code"
-        :loading="loading"
-      />
-    </template>
-  </FetchLeagueData>
+  <v-card outlined>
+    <LeagueTableTitle :leagueCode="code" />
+    <LeagueTableData :headers="headers" :leagueCode="code" :loading="loading" />
+  </v-card>
 </template>
 
 <script>
-import FetchLeagueData from "@data/FetchLeagueData.vue";
 import LeagueTableTitle from "./LeagueTableTitle.vue";
 import LeagueTableData from "./LeagueTableData.vue";
 
 export default {
   name: "LeagueTable",
   components: {
-    FetchLeagueData,
     LeagueTableTitle,
     LeagueTableData,
   },
@@ -27,6 +19,10 @@ export default {
     code: {
       type: String,
       required: true,
+    },
+    loading: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {

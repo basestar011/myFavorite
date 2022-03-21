@@ -1,4 +1,4 @@
-import axios from "axios";
+import { footballApi } from "@/api";
 
 export default {
   namespaced: true,
@@ -23,14 +23,8 @@ export default {
         return getters.getData(leagueCode);
       }
 
-      const config = {
-        headers: {
-          "X-Auth-Token": "444df22fc4ac49fc98030bc4953b230d",
-        },
-      };
-      const { data } = await axios.get(
-        `https://api.football-data.org/v2/competitions/${leagueCode}/standings`,
-        config
+      const { data } = await footballApi.get(
+        `competitions/${leagueCode}/standings`
       );
       const { standings } = data;
       const leagueData = standings[0].table.map((data) => ({

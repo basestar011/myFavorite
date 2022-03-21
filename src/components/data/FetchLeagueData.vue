@@ -1,7 +1,7 @@
 <template>
-  <v-card outlined>
+  <v-sheet>
     <slot :loading="loading" :code="code"></slot>
-  </v-card>
+  </v-sheet>
 </template>
 
 <script>

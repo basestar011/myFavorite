@@ -1,4 +1,4 @@
-import axios from "axios";
+import { footballApi } from "@/api";
 
 export default {
   namespaced: true,
@@ -23,15 +23,7 @@ export default {
       return true;
     },
     async fetchMatchData({ commit }, teamId) {
-      const config = {
-        headers: {
-          "X-Auth-Token": "444df22fc4ac49fc98030bc4953b230d",
-        },
-      };
-      const { data } = await axios.get(
-        `https://api.football-data.org/v2/teams/${teamId}/matches`,
-        config
-      );
+      const { data } = await footballApi.get(`teams/${teamId}/matches`);
       commit("setMatches", data.matches);
       return data;
     },
