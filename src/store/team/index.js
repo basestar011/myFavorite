@@ -1,30 +1,37 @@
 import { footballApi } from "@/api";
+import {
+  ID,
+  MATCHES,
+  SET_ID,
+  SET_MATCHES,
+  FETCH_ALL_DATA,
+  FETCH_MATCH_DATA,
+} from "./types";
 
 export default {
   namespaced: true,
   state: () => ({
-    id: "",
-    matches: [],
+    [ID]: "",
+    [MATCHES]: [],
   }),
   getters: {},
   mutations: {
-    setId(state, id) {
+    [SET_ID](state, id) {
       state.id = id;
     },
-    setMatches(state, matches) {
+    [SET_MATCHES](state, matches) {
       state.matches = matches;
     },
   },
   actions: {
-    async fetchAllData({ commit, dispatch }, teamId) {
-      commit("setId", teamId);
-
-      await dispatch("fetchMatchData", teamId);
+    async [FETCH_ALL_DATA]({ commit, dispatch }, teamId) {
+      commit(SET_ID, teamId);
+      await dispatch(FETCH_MATCH_DATA, teamId);
       return true;
     },
-    async fetchMatchData({ commit }, teamId) {
+    async [FETCH_MATCH_DATA]({ commit }, teamId) {
       const { data } = await footballApi.get(`teams/${teamId}/matches`);
-      commit("setMatches", data.matches);
+      commit(SET_MATCHES, data.matches);
       return data;
     },
   },

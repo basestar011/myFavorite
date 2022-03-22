@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { LEAGUE, FETCH_DATA } from "@/store/league/types";
+
 export default {
   name: "FetchLeagueData",
   props: {
@@ -14,7 +16,7 @@ export default {
     },
   },
   async created() {
-    await this.$store.dispatch("league/fetchData", this.code);
+    await this.$store.dispatch(`${LEAGUE}${FETCH_DATA}`, this.code);
     this.loading = false;
   },
   data() {

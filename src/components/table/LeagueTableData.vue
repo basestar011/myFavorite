@@ -33,6 +33,9 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { LEAGUE, GET_DATA } from "@/store/league/types";
+
 export default {
   name: "LeagueData",
   props: {
@@ -50,8 +53,11 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(LEAGUE, {
+      leagueData: GET_DATA,
+    }),
     data() {
-      return this.loading ? [] : this.$store.state.league[this.leagueCode];
+      return this.loading ? [] : this.leagueData(this.leagueCode);
     },
   },
 };

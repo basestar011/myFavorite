@@ -1,15 +1,11 @@
 <template>
-  <div>
-    <h1>팀 페이지</h1>
-    <div>
-      <FetchTeamData>
-        <template v-slot="{ loading }">
-          <div v-if="loading">로딩중.....</div>
-          <div v-else>로딩완료!</div>
-        </template>
-      </FetchTeamData>
-    </div>
-  </div>
+  <FetchTeamData :code="id">
+    <h1>{{ `teams.${id}` | translate }}</h1>
+    <template v-slot="{ loading }">
+      <div v-if="loading">로딩중.....</div>
+      <div v-else>로딩완료!</div>
+    </template>
+  </FetchTeamData>
 </template>
 
 <script>
@@ -19,6 +15,14 @@ export default {
   name: "TeamPage",
   components: {
     FetchTeamData,
+  },
+  data() {
+    return {
+      id: "",
+    };
+  },
+  created() {
+    this.id = this.$route.params.id;
   },
 };
 </script>

@@ -1,26 +1,31 @@
 import { footballApi } from "@/api";
+import { HAS_DATA, GET_DATA, SET_DATA, FETCH_DATA } from "./types";
 
 export default {
   namespaced: true,
-  state: () => ({}),
+  state: () => ({
+    /**
+     * leagueCode : [ ...team standings ]
+     */
+  }),
   getters: {
-    hasData(state) {
+    [HAS_DATA](state) {
       return (leagueCode) =>
         state[leagueCode] !== undefined && state[leagueCode].length > 0;
     },
-    getData(state) {
+    [GET_DATA](state) {
       return (leagueCode) => state[leagueCode];
     },
   },
   mutations: {
-    setLeague(state, { id, data }) {
+    [SET_DATA](state, { id, data }) {
       state[id] = data;
     },
   },
   actions: {
-    async fetchData({ commit, getters }, leagueCode) {
-      if (getters.hasData(leagueCode)) {
-        return getters.getData(leagueCode);
+    async [FETCH_DATA]({ commit, getters }, leagueCode) {
+      if (getters[HAS_DATA](leagueCode)) {
+        return getters[GET_DATA](leagueCode);
       }
 
       const { data } = await footballApi.get(
@@ -33,7 +38,7 @@ export default {
         id: data.team.id,
         logo: data.team.crestUrl,
       }));
-      commit("setLeague", { id: leagueCode, data: leagueData });
+      commit(SET_DATA, { id: leagueCode, data: leagueData });
       return leagueData;
     },
   },
