@@ -7,7 +7,6 @@ module.exports = {
         "@": path.join(__dirname, "src/"),
         "@views": path.join(__dirname, "src/views"),
         "@data": path.join(__dirname, "src/components/data"),
-        "@team": path.join(__dirname, "src/components/team"),
         "@table": path.join(__dirname, "src/components/table"),
       },
     },

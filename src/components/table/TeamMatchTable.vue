@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <h2>팀 매치 테이블</h2>
-    <div></div>
-  </div>
+  <ul>
+    <li>test</li>
+  </ul>
 </template>
 
 <script>
 export default {
-  name: "TeamMatchTable",
+  name: "TeamMatch",
   components: {},
 };
 </script>

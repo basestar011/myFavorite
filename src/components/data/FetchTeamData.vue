@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: dynamic component로 변경할 것 -->
   <v-sheet>
     <slot :loading="loading" :code="code"></slot>
   </v-sheet>
@@ -16,7 +17,7 @@ export default {
     },
   },
   async created() {
-    await this.$store.dispatch(`${TEAM}${FETCH_ALL_DATA}`, this.code);
+    await this.$store.dispatch(`${TEAM + FETCH_ALL_DATA}`, this.code);
     this.loading = false;
   },
   data() {
