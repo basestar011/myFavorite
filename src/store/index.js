@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import league from "./league";
+import { LEAGUE } from "./league/types";
 import team from "./team";
+import { TEAM } from "./team/types";
 
 Vue.use(Vuex);
 
@@ -10,7 +12,7 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {
-    league,
-    team,
+    [LEAGUE]: league,
+    [TEAM]: team,
   },
 });

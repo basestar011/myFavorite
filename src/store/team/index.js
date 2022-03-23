@@ -3,9 +3,6 @@ import {
   ID,
   INFO,
   MATCHES,
-  GET_LAST_UPDATED,
-  GET_SQUAD,
-  GET_ACTIVE_COMPETS,
   SET_ID,
   SET_INFO,
   SET_MATCHES,
@@ -21,17 +18,7 @@ export default {
     [INFO]: {},
     [MATCHES]: [],
   }),
-  getters: {
-    [GET_LAST_UPDATED](state) {
-      return state[INFO].lastUpdated;
-    },
-    [GET_SQUAD](state) {
-      return state[INFO].squad;
-    },
-    [GET_ACTIVE_COMPETS](state) {
-      return state[INFO].activeCompetitions;
-    },
-  },
+  getters: {},
   mutations: {
     [SET_ID](state, id) {
       state[ID] = id;

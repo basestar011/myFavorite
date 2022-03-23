@@ -1,5 +1,5 @@
 // namespace
-export const LEAGUE = "league/";
+export const LEAGUE = "league";
 
 // state
 

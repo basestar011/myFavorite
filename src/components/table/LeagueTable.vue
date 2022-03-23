@@ -1,7 +1,12 @@
 <template>
   <v-card outlined>
     <LeagueTableTitle :leagueCode="code" />
-    <LeagueTableData :headers="headers" :leagueCode="code" :loading="loading" />
+    <LeagueTableData
+      :headers="headers"
+      :loading="loading"
+      :leagueCode="code"
+      :data="data"
+    />
   </v-card>
 </template>
 
@@ -16,13 +21,17 @@ export default {
     LeagueTableData,
   },
   props: {
+    loading: {
+      type: Boolean,
+      default: true,
+    },
     code: {
       type: Number,
       required: true,
     },
-    loading: {
-      type: Boolean,
-      default: true,
+    data: {
+      type: Array,
+      default: () => [],
     },
   },
   data() {

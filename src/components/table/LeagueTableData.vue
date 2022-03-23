@@ -25,7 +25,7 @@
       <div class="d-flex">
         <img :src="item.logo" width="20px" height="20px" class="mr-2" />
         <router-link :to="`/team/${item.team}`">
-          {{ `teams.${item.team}` | translate }}
+          {{ `teams.${item.team}` | translate(item.team.name) }}
         </router-link>
       </div>
     </template>
@@ -33,9 +33,6 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { LEAGUE, GET_DATA } from "@/store/league/types";
-
 export default {
   name: "LeagueData",
   props: {
@@ -43,21 +40,17 @@ export default {
       type: Array,
       required: true,
     },
-    leagueCode: {
-      type: Number,
-      required: true,
-    },
     loading: {
       type: Boolean,
       default: true,
     },
-  },
-  computed: {
-    ...mapGetters(LEAGUE, {
-      leagueData: GET_DATA,
-    }),
-    data() {
-      return this.loading ? [] : this.leagueData(this.leagueCode);
+    leagueCode: {
+      type: Number,
+      required: true,
+    },
+    data: {
+      type: Array,
+      default: () => [],
     },
   },
 };

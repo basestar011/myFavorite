@@ -10,15 +10,13 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { TEAM, GET_SQUAD } from "@/store/team/types";
-
 export default {
   name: "TeamSquad",
-  computed: {
-    ...mapGetters(TEAM, {
-      squad: GET_SQUAD,
-    }),
+  props: {
+    squad: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>
