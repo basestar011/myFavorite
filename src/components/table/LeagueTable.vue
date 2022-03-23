@@ -17,7 +17,7 @@ export default {
   },
   props: {
     code: {
-      type: String,
+      type: Number,
       required: true,
     },
     loading: {

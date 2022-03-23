@@ -9,7 +9,7 @@ export default {
   name: "LeagueTitle",
   props: {
     leagueCode: {
-      type: String,
+      type: Number,
       required: true,
     },
   },

@@ -44,7 +44,7 @@ export default {
       required: true,
     },
     leagueCode: {
-      type: String,
+      type: Number,
       required: true,
     },
     loading: {

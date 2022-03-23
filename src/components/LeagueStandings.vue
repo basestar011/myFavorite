@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" v-for="leagueCode in leagues" :key="leagueCode">
-        <FetchLeagueData :code="leagueCode">
+      <v-col cols="12" v-for="league in leagues" :key="league">
+        <FetchLeagueData :code="league">
           <template v-slot="{ loading }">
-            <LeagueTable :code="leagueCode" :loading="loading" />
+            <LeagueTable :code="league" :loading="loading" />
           </template>
         </FetchLeagueData>
       </v-col>

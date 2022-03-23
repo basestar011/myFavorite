@@ -12,7 +12,7 @@ export default {
   name: "FetchLeagueData",
   props: {
     code: {
-      type: String,
+      type: Number,
       required: true,
     },
   },

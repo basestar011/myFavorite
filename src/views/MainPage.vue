@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      leagues: ["PD", "PL", "SA", "FL1"],
+      leagues: [2014, 2021, 2019, 2015],
     };
   },
 };
