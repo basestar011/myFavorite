@@ -8,8 +8,8 @@ import { formatDate } from "@/util";
 
 Vue.config.productionTip = false;
 
-Vue.filter("translate", (key) => {
-  return i18n.t(key);
+Vue.filter("translate", (key, defaultValue) => {
+  return i18n.te(key) ? i18n.t(key) : defaultValue;
 });
 
 Vue.filter("formatDate", formatDate);
