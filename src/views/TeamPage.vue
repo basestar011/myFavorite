@@ -21,7 +21,6 @@
         <v-row v-else>
           <v-col cols="12">
             <!-- TeamPage Competitions -->
-            <h1>진행중인 대회</h1>
             <TeamCompetitionTable :competitions="info.activeCompetitions" />
           </v-col>
           <v-col cols="12">
