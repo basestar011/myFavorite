@@ -5,20 +5,7 @@
         <v-row>
           <v-col cols="12" class="pa-0">
             <!-- TeamPage Header -->
-            <div class="d-flex justify-start align-center">
-              <v-img
-                :src="loading ? '' : info.crestUrl"
-                alt="팀로고"
-                class="team_logo flex-grow-0 mr-3"
-              />
-              <div class="flex-grow-1">
-                <h1>{{ `teams.${code}` | translate(info.name) }}</h1>
-                <span class="caption">
-                  최종 업데이트일 :
-                  {{ loading ? "" : info.lastUpdated | formatDate("LL") }}
-                </span>
-              </div>
-            </div>
+            <TeamHeader :loading="loading" :code="code" :info="info" />
           </v-col>
         </v-row>
         <v-row>
@@ -27,7 +14,9 @@
           </v-col>
         </v-row>
         <v-row v-if="loading">
-          <v-col cols="12">loading...</v-col>
+          <v-col cols="12">
+            <BasicSpinner />
+          </v-col>
         </v-row>
         <v-row v-else>
           <v-col cols="12">
@@ -52,18 +41,24 @@
 </template>
 
 <script>
+import BasicSpinner from "@/components/common/BasicSpinner.vue";
 import FetchTeamData from "@data/FetchTeamData.vue";
-import TeamMatchTable from "@table/TeamMatchTable.vue";
-import TeamSquadTable from "@table/TeamSquadTable.vue";
-import TeamCompetitionTable from "@table/TeamCompetitionTable.vue";
+import {
+  TeamHeader,
+  TeamCompetitionTable,
+  TeamMatchTable,
+  TeamSquadTable,
+} from "@team";
 
 export default {
   name: "TeamPage",
   components: {
+    BasicSpinner,
     FetchTeamData,
     TeamSquadTable,
     TeamMatchTable,
     TeamCompetitionTable,
+    TeamHeader,
   },
   data() {
     return {
@@ -76,9 +71,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.team_logo {
-  width: 60px;
-  height: 60px;
-}
-</style>
+<style scoped></style>

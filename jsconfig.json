@@ -7,8 +7,10 @@
       // 해당 경로에 module이 없다면 /* 까지 잡아주고,
       "@views/*": ["./src/views/*"],
       "@data/*": ["./src/components/data/*"],
-      "@table/*": ["./src/components/table/*"],
+      "@common/*": ["./src/components/common/*"],
       // module이 있으면 /* 를 생략한다.
+      "@league": ["./src/components/league"],
+      "@team": ["./src/components/team"],
     }
   },
   "exclude": [

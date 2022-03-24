@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import LeagueStandings from "@/components/LeagueStandings.vue";
+import { LeagueStandings } from "@league";
 
 export default {
   name: "MainPage",

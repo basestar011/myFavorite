@@ -15,7 +15,7 @@
 
 <script>
 import FetchLeagueData from "@data/FetchLeagueData.vue";
-import LeagueTable from "@table/LeagueTable.vue";
+import LeagueTable from "./LeagueTable.vue";
 
 export default {
   name: "LeagueStandings",

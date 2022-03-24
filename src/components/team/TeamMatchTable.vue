@@ -51,7 +51,7 @@ export default {
         {
           text: "경기",
           value: "match",
-          align: "start",
+          align: "center",
           width: "30%",
         },
       ],
