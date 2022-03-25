@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "LeagueTitle",
+  name: "LeagueStandingTitle",
   props: {
     leagueCode: {
       type: Number,

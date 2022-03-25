@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: "LeagueData",
+  name: "LeagueStandingTable",
   props: {
     headers: {
       type: Array,
@@ -43,10 +43,6 @@ export default {
     loading: {
       type: Boolean,
       default: true,
-    },
-    leagueCode: {
-      type: Number,
-      required: true,
     },
     data: {
       type: Array,

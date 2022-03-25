@@ -5,7 +5,12 @@
         <FetchLeagueData :code="league">
           <template v-slot="{ loading, code, data }">
             <!-- TODO: LeagueTableSimple 컴포넌트 추가 (simple props로 적용하도록) -->
-            <LeagueTable :loading="loading" :code="code" :data="data" />
+            <LeagueStanding
+              :loading="loading"
+              :code="code"
+              :data="data"
+              :simple="simple"
+            />
           </template>
         </FetchLeagueData>
       </v-col>
@@ -15,7 +20,7 @@
 
 <script>
 import FetchLeagueData from "@data/FetchLeagueData.vue";
-import LeagueTable from "./LeagueTable.vue";
+import LeagueStanding from "./LeagueStanding.vue";
 
 export default {
   name: "LeagueStandings",
@@ -24,10 +29,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    simple: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {
     FetchLeagueData,
-    LeagueTable,
+    LeagueStanding,
   },
 };
 </script>

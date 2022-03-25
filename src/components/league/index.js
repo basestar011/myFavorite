@@ -1,6 +1,11 @@
 import LeagueStandings from "./LeagueStandings.vue";
-import LeagueTable from "./LeagueTable.vue";
-import LeagueTableTitle from "./LeagueTableTitle.vue";
-import LeagueTableData from "./LeagueTableData.vue";
+import LeagueStanding from "./LeagueStanding.vue";
+import LeagueStandingTitle from "./LeagueStandingTitle.vue";
+import LeagueStandingTable from "./LeagueStandingTable.vue";
 
-export { LeagueStandings, LeagueTable, LeagueTableTitle, LeagueTableData };
+export {
+  LeagueStandings,
+  LeagueStanding,
+  LeagueStandingTitle,
+  LeagueStandingTable,
+};

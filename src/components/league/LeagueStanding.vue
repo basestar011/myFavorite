@@ -1,24 +1,28 @@
 <template>
   <v-card outlined>
-    <LeagueTableTitle :leagueCode="code" />
-    <LeagueTableData
+    <LeagueStandingTitle :leagueCode="code" />
+    <v-divider></v-divider>
+    <LeagueStandingTableSimple v-if="simple" :loading="loading" :data="data" />
+    <LeagueStandingTable
+      v-else
       :headers="headers"
       :loading="loading"
-      :leagueCode="code"
       :data="data"
     />
   </v-card>
 </template>
 
 <script>
-import LeagueTableTitle from "./LeagueTableTitle.vue";
-import LeagueTableData from "./LeagueTableData.vue";
+import LeagueStandingTitle from "./LeagueStandingTitle.vue";
+import LeagueStandingTable from "./LeagueStandingTable.vue";
+import LeagueStandingTableSimple from "./LeagueStandingTableSimple.vue";
 
 export default {
-  name: "LeagueTable",
+  name: "LeagueStanding",
   components: {
-    LeagueTableTitle,
-    LeagueTableData,
+    LeagueStandingTitle,
+    LeagueStandingTable,
+    LeagueStandingTableSimple,
   },
   props: {
     loading: {
@@ -32,6 +36,10 @@ export default {
     data: {
       type: Array,
       default: () => [],
+    },
+    simple: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
