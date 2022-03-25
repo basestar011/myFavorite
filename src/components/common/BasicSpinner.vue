@@ -1,16 +1,10 @@
 <template>
-  <v-progress-circular indeterminate :color="color" />
+  <v-progress-circular indeterminate v-bind="$attrs" />
 </template>
 
 <script>
 export default {
   name: "BasicSpinner",
-  props: {
-    color: {
-      type: String,
-      default: "primary",
-    },
-  },
 };
 </script>
 

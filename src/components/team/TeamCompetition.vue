@@ -1,13 +1,13 @@
 <template>
-  <v-list dense>
-    <v-list-item-title>대회 정보</v-list-item-title>
-    <v-divider></v-divider>
+  <v-list>
+    <v-subheader>대회</v-subheader>
     <v-list-item v-for="competition in competitions" :key="competition.id">
       <v-list-item-content>
-        <v-list-item-subtitle>
-          {{ `league.${competition.id}` | translate(competition.name) }}
-          ({{ competition.area.name }})
-        </v-list-item-subtitle>
+        <v-list-item-title>
+          <v-chip small color="primary" text-color="white" class="mr-1">
+            {{ `league.${competition.id}` | translate(competition.name) }}
+          </v-chip>
+        </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
   </v-list>

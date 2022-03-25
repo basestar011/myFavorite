@@ -4,7 +4,6 @@
       <v-container>
         <v-row>
           <v-col cols="12" class="pa-0">
-            <!-- TeamPage Header -->
             <TeamHeader :loading="loading" :code="code" :info="info" />
           </v-col>
         </v-row>
@@ -15,21 +14,32 @@
         </v-row>
         <v-row v-if="loading">
           <v-col cols="12">
-            <BasicSpinner />
+            <BasicSpinner color="primary" style="width: 100%" />
           </v-col>
         </v-row>
         <v-row v-else>
-          <v-col cols="12">
-            <!-- TeamPage Competitions -->
-            <TeamCompetitionTable :competitions="info.activeCompetitions" />
+          <v-col cols="6">
+            <span class="text-subtitle-1" style="display: block">대회</span>
+            <v-chip
+              v-for="competition in info.activeCompetitions"
+              :key="competition.id"
+              small
+              color="primary"
+              text-color="white"
+              class="mr-1"
+            >
+              {{ `league.${competition.id}` | translate(competition.name) }}
+            </v-chip>
+          </v-col>
+          <v-col cols="8">
+            <v-card>
+              <v-card-title class="text-center">일정</v-card-title>
+              <v-card-text>
+                <TeamMatchTable :matches="matches" />
+              </v-card-text>
+            </v-card>
           </v-col>
           <v-col cols="12">
-            <!-- TeamPage Matches -->
-            <h1>일정</h1>
-            <TeamMatchTable :matches="matches" />
-          </v-col>
-          <v-col cols="12">
-            <!-- TeamPage Squad -->
             <h1>팀 선수단</h1>
             <TeamSquadTable :squad="info.squad" />
           </v-col>
@@ -42,12 +52,7 @@
 <script>
 import BasicSpinner from "@/components/common/BasicSpinner.vue";
 import FetchTeamData from "@data/FetchTeamData.vue";
-import {
-  TeamHeader,
-  TeamCompetitionTable,
-  TeamMatchTable,
-  TeamSquadTable,
-} from "@team";
+import { TeamHeader, TeamMatchTable, TeamSquadTable } from "@team";
 
 export default {
   name: "TeamPage",
@@ -56,7 +61,6 @@ export default {
     FetchTeamData,
     TeamSquadTable,
     TeamMatchTable,
-    TeamCompetitionTable,
     TeamHeader,
   },
   data() {
