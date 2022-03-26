@@ -19,18 +19,14 @@
         </v-row>
         <v-row v-else>
           <v-col cols="9">
-            <v-card>
-              <v-card-title class="text-center">일정</v-card-title>
-              <v-card-text>
-                <TeamMatchTable :matches="matches" />
-              </v-card-text>
-            </v-card>
+            <span class="text-h5">대회 일정</span>
+            <TeamMatchTable :matches="matches" :teamId="info.id" />
           </v-col>
           <v-col cols="3">
             <TeamCompetition :competitions="info.activeCompetitions" />
           </v-col>
           <v-col cols="12">
-            <h1>팀 선수단</h1>
+            <span class="text-h5">선수단</span>
             <TeamSquadTable :squad="info.squad" />
           </v-col>
         </v-row>

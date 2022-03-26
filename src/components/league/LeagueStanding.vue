@@ -1,18 +1,30 @@
 <template>
   <v-card outlined>
-    <LeagueStandingTitle :leagueCode="code" />
-    <v-divider></v-divider>
-    <LeagueStandingTableSimple v-if="simple" :loading="loading" :data="data" />
-    <LeagueStandingTable
-      v-else
-      :headers="headers"
-      :loading="loading"
-      :data="data"
-    />
+    <template v-if="loading">
+      <BasicSpinner color="primary" style="width: 100%" />
+    </template>
+    <template v-else>
+      <LeagueStandingTitle :league="data.info" />
+      <v-divider></v-divider>
+      <LeagueStandingTableSimple
+        v-if="simple"
+        :headers="simpleHeaders"
+        :loading="loading"
+        :data="data.standings"
+        :maxStanding="10"
+      />
+      <LeagueStandingTable
+        v-else
+        :headers="headers"
+        :loading="loading"
+        :data="data.standings"
+      />
+    </template>
   </v-card>
 </template>
 
 <script>
+import BasicSpinner from "@common/BasicSpinner.vue";
 import LeagueStandingTitle from "./LeagueStandingTitle.vue";
 import LeagueStandingTable from "./LeagueStandingTable.vue";
 import LeagueStandingTableSimple from "./LeagueStandingTableSimple.vue";
@@ -20,6 +32,7 @@ import LeagueStandingTableSimple from "./LeagueStandingTableSimple.vue";
 export default {
   name: "LeagueStanding",
   components: {
+    BasicSpinner,
     LeagueStandingTitle,
     LeagueStandingTable,
     LeagueStandingTableSimple,
@@ -34,8 +47,8 @@ export default {
       required: true,
     },
     data: {
-      type: Array,
-      default: () => [],
+      type: Object,
+      default: () => {},
     },
     simple: {
       type: Boolean,
@@ -76,6 +89,7 @@ export default {
           class: "table-col",
         },
       ],
+      simpleHeaders: ["순위", "팀명", "경기수", "승", "무", "패", "승점"],
     };
   },
 };

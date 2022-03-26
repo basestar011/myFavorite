@@ -24,8 +24,8 @@
     <template #[`item.team`]="{ item }">
       <div class="d-flex">
         <img :src="item.logo" width="20px" height="20px" class="mr-2" />
-        <router-link :to="`/team/${item.team}`">
-          {{ `teams.${item.team}` | translate(item.team.name) }}
+        <router-link :to="`/team/${item.team.id}`">
+          {{ `teams.name.${item.id}` | translate(item.team.name) }}
         </router-link>
       </div>
     </template>

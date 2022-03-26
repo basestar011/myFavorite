@@ -6,7 +6,7 @@
       </template>
     </v-img>
     <div class="flex-grow-1">
-      <h1>{{ `teams.${code}` | translate(info.name) }}</h1>
+      <h1>{{ `teams.fullname.${code}` | translate(info.name) }}</h1>
       <BasicSkeletonLoader type="text" v-if="loading" />
       <span v-else class="caption">최근 업데이트 {{ lastUpdated }}</span>
     </div>

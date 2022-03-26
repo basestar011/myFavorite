@@ -1,6 +1,6 @@
 <template>
   <v-card-title class="d-flex justify-center">
-    {{ `league.${leagueCode}` | translate }}
+    {{ `league.${league.id}` | translate(league.name) }}
   </v-card-title>
 </template>
 
@@ -8,8 +8,8 @@
 export default {
   name: "LeagueStandingTitle",
   props: {
-    leagueCode: {
-      type: Number,
+    league: {
+      type: Object,
       required: true,
     },
   },

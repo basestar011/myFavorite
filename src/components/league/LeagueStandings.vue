@@ -1,10 +1,9 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" v-for="league in leagues" :key="league">
+      <v-col :cols="cols" v-for="league in leagues" :key="league">
         <FetchLeagueData :code="league">
           <template v-slot="{ loading, code, data }">
-            <!-- TODO: LeagueTableSimple 컴포넌트 추가 (simple props로 적용하도록) -->
             <LeagueStanding
               :loading="loading"
               :code="code"
@@ -37,6 +36,11 @@ export default {
   components: {
     FetchLeagueData,
     LeagueStanding,
+  },
+  computed: {
+    cols() {
+      return this.simple ? 6 : 12;
+    },
   },
 };
 </script>

@@ -37,7 +37,7 @@ export default {
       getData: GET_DATA,
     }),
     leagueData() {
-      return this.loading ? [] : this.getData(this.code);
+      return this.loading ? {} : this.getData(this.code);
     },
   },
 };

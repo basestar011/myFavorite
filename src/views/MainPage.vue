@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
-      <LeagueStandings :leagues="leagues" />
+      <LeagueStandings :leagues="leagues" simple />
     </v-col>
   </v-row>
 </template>
@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      leagues: [2014, 2021, 2019, 2015],
+      leagues: [2014, 2021, 2002, 2019, 2015],
     };
   },
 };

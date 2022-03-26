@@ -1,8 +1,11 @@
 <template>
   <v-list>
-    <v-subheader>대회</v-subheader>
-    <v-list-item v-for="competition in competitions" :key="competition.id">
-      <v-list-item-content>
+    <v-list-item
+      v-for="competition in competitions"
+      :key="competition.id"
+      class="list-item"
+    >
+      <v-list-item-content class="py-0">
         <v-list-item-title>
           <v-chip small color="primary" text-color="white" class="mr-1">
             {{ `league.${competition.id}` | translate(competition.name) }}
@@ -25,4 +28,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.list-item {
+  min-height: 30px !important;
+}
+</style>
