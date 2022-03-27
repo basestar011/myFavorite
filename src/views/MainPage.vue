@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="12">
+    <v-col cols="12" class="main_col">
       <LeagueStandings :leagues="leagues" simple />
     </v-col>
   </v-row>
@@ -21,4 +21,8 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+.main_col {
+  min-width: 400px;
+}
+</style>

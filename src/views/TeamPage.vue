@@ -13,20 +13,23 @@
           </v-col>
         </v-row>
         <v-row v-if="loading">
-          <v-col cols="12">
-            <BasicSpinner color="primary" style="width: 100%" />
+          <v-col cols="12" md="7" lg="7" xl="7" sm="12">
+            <BasicSkeletonLoader type="table" />
+          </v-col>
+          <v-col cols="12" md="5" lg="5" xl="5" sm="12">
+            <BasicSkeletonLoader type="table" />
           </v-col>
         </v-row>
         <v-row v-else>
-          <v-col cols="9">
-            <span class="text-h5">대회 일정</span>
+          <v-col cols="12" md="7" lg="7" xl="7" sm="12">
+            <div>
+              <span class="text-h5">대회 일정</span>
+              <TeamCompetition :competitions="info.activeCompetitions" />
+            </div>
             <TeamMatchTable :matches="matches" :teamId="info.id" />
           </v-col>
-          <v-col cols="3">
-            <TeamCompetition :competitions="info.activeCompetitions" />
-          </v-col>
-          <v-col cols="12">
-            <span class="text-h5">선수단</span>
+          <v-col cols="12" md="5" lg="5" xl="5" sm="12">
+            <div class="text-h5 mr-2 my-2">선수단</div>
             <TeamSquadTable :squad="info.squad" />
           </v-col>
         </v-row>
@@ -36,7 +39,7 @@
 </template>
 
 <script>
-import BasicSpinner from "@/components/common/BasicSpinner.vue";
+import BasicSkeletonLoader from "@/components/common/BasicSkeletonLoader.vue";
 import FetchTeamData from "@data/FetchTeamData.vue";
 import {
   TeamHeader,
@@ -48,7 +51,7 @@ import {
 export default {
   name: "TeamPage",
   components: {
-    BasicSpinner,
+    BasicSkeletonLoader,
     FetchTeamData,
     TeamCompetition,
     TeamSquadTable,
@@ -62,6 +65,7 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
+    console.log(this.$vuetify.breakpoint);
   },
 };
 </script>

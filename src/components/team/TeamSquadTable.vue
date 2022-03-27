@@ -1,21 +1,47 @@
 <template>
-  <ul>
-    <li v-for="player in squad" :key="player.id">
-      <p>이름: {{ player.name }}</p>
-      <p>포지션: {{ player.position }}</p>
-      <p>생년월일: {{ player.dateOfBirth | formatDate("LL") }}</p>
-      <p>국적: {{ player.nationality }}</p>
-    </li>
-  </ul>
+  <v-simple-table class="elevation-1">
+    <template #default>
+      <thead>
+        <tr>
+          <th class="text-left" style="min-width: 100px">포지션</th>
+          <th class="text-left">이름</th>
+          <th class="text-left">나이</th>
+          <th class="text-left">국적</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="player in squad" :key="player.id">
+          <td class="text-overline">
+            {{ `position.${player.position}` | translate }}
+          </td>
+          <td>
+            {{ player.name }}
+          </td>
+          <td>
+            {{ getAge(player.dateOfBirth) }}
+          </td>
+          <td>
+            {{ player.nationality }}
+          </td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
 </template>
 
 <script>
+import moment from "moment";
 export default {
   name: "TeamSquad",
   props: {
     squad: {
       type: Array,
       default: () => [],
+    },
+  },
+  methods: {
+    getAge(birth) {
+      return moment().diff(moment(birth), "years");
     },
   },
 };

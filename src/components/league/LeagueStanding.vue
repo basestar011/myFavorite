@@ -1,10 +1,14 @@
 <template>
-  <v-card outlined>
+  <v-card outlined min-width="400px">
     <template v-if="loading">
-      <BasicSpinner color="primary" style="width: 100%" />
+      <BasicSkeletonLoader type="card-heading, table-thead, table-tbody" />
     </template>
     <template v-else>
       <LeagueStandingTitle :league="data.info" />
+      <v-card-subtitle class="text-right">
+        최근 업데이트
+        {{ data.info.lastUpdated | formatDate("YYYY.MM.DD.") }}
+      </v-card-subtitle>
       <v-divider></v-divider>
       <LeagueStandingTableSimple
         v-if="simple"
@@ -24,7 +28,7 @@
 </template>
 
 <script>
-import BasicSpinner from "@common/BasicSpinner.vue";
+import BasicSkeletonLoader from "@common/BasicSkeletonLoader.vue";
 import LeagueStandingTitle from "./LeagueStandingTitle.vue";
 import LeagueStandingTable from "./LeagueStandingTable.vue";
 import LeagueStandingTableSimple from "./LeagueStandingTableSimple.vue";
@@ -32,7 +36,7 @@ import LeagueStandingTableSimple from "./LeagueStandingTableSimple.vue";
 export default {
   name: "LeagueStanding",
   components: {
-    BasicSpinner,
+    BasicSkeletonLoader,
     LeagueStandingTitle,
     LeagueStandingTable,
     LeagueStandingTableSimple,

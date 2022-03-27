@@ -1,7 +1,24 @@
 <template>
   <v-container>
     <v-row>
-      <v-col :cols="cols" v-for="league in leagues" :key="league">
+      <v-col cols="12" class="d-flex justify-space-between align-center">
+        <span class="text-h5">내 관심 해외 축구 리그</span>
+        <span>
+          <router-link to="/settings" class="d-flex align-center">
+            설정&nbsp;
+            <v-icon small>mdi-cog</v-icon>
+          </router-link>
+        </span>
+      </v-col>
+      <v-col
+        :cols="small"
+        :sm="small"
+        :md="cols"
+        :lg="cols"
+        :xl="cols"
+        v-for="league in leagues"
+        :key="league"
+      >
         <FetchLeagueData :code="league">
           <template v-slot="{ loading, code, data }">
             <LeagueStanding
@@ -23,6 +40,12 @@ import LeagueStanding from "./LeagueStanding.vue";
 
 export default {
   name: "LeagueStandings",
+  data() {
+    return {
+      small: 12,
+      wide: 6,
+    };
+  },
   props: {
     leagues: {
       type: Array,
@@ -39,7 +62,7 @@ export default {
   },
   computed: {
     cols() {
-      return this.simple ? 6 : 12;
+      return this.simple ? this.wide : this.small;
     },
   },
 };

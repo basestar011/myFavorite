@@ -1,6 +1,10 @@
 <template>
   <div class="d-flex justify-start align-center">
-    <v-img :src="info.crestUrl" alt="팀로고" class="team_logo flex-grow-0 mr-3">
+    <v-img
+      :src="loading ? '' : info.crestUrl"
+      alt="팀로고"
+      class="team_logo flex-grow-0 mr-3"
+    >
       <template #placeholder>
         <BasicSkeletonLoader type="image" />
       </template>
