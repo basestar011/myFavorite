@@ -11,6 +11,7 @@
       // module이 있으면 /* 를 생략한다.
       "@league": ["./src/components/league"],
       "@team": ["./src/components/team"],
+      "@settings": ["./src/components/settings"],
     }
   },
   "exclude": [

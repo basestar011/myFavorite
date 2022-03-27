@@ -10,6 +10,7 @@ module.exports = {
         "@common": path.join(__dirname, "src/components/common"),
         "@league": path.join(__dirname, "src/components/league"),
         "@team": path.join(__dirname, "src/components/team"),
+        "@settings": path.join(__dirname, "src/components/settings"),
       },
     },
   },

@@ -15,9 +15,15 @@ const router = new VueRouter({
     },
     {
       path: "/team/:id",
-      name: "Team Page",
+      name: "Team",
       component: () =>
         import(/* webpackChunkName: "team" */ "@views/TeamPage.vue"),
+    },
+    {
+      path: "/settings",
+      name: "Setting",
+      component: () =>
+        import(/* webpackChunkName: "settings" */ "@views/SettingsPage.vue"),
     },
   ],
 });
