@@ -1,24 +1,18 @@
 <template>
-  <SettingsLeague :available-leagues="competitions" />
+  <SettingsLeague />
 </template>
 
 <script>
-import { footballApi } from "@/api";
 import { SettingsLeague } from "@settings";
+import { INIT_LEAGUE } from "@/store/types";
 
 export default {
   name: "SettingsPage",
   components: {
     SettingsLeague,
   },
-  data() {
-    return {
-      competitions: [],
-    };
-  },
   async created() {
-    const { data } = await footballApi.get("competitions?plan=TIER_ONE");
-    this.competitions = data.competitions;
+    await this.$store.dispatch(INIT_LEAGUE);
   },
 };
 </script>

@@ -32,41 +32,52 @@
         item-value="id"
         dense
         filled
-        no-data-text="해당하는 리그가 없습니다."
         label="가능한 리그 목록"
-      ></v-autocomplete>
+        @focus="fetchData"
+        :loading="loading"
+      >
+        <template #no-data>
+          <BasicSpinner color="primary" style="width: 100%" />
+        </template>
+      </v-autocomplete>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import BasicSpinner from "@common/BasicSpinner.vue";
+import { footballApi } from "@/api";
+import { mapGetters } from "vuex";
+import { LEAGUE, GET_DATA } from "@/store/league/types";
+
 export default {
   name: "SettingsLeague",
-  props: {
-    availableLeagues: {
-      type: Array,
-      required: true,
-    },
+  components: {
+    BasicSpinner,
   },
   data() {
     return {
       selectedLeague: "",
+      loading: false,
+      availableList: [],
     };
   },
   computed: {
+    ...mapGetters(LEAGUE, { getData: GET_DATA }),
     leagues() {
-      return this.availableLeagues.length === 0
-        ? []
-        : this.$store.state.leagues.map((leagueCode) => {
-            return this.availableLeagues.find(
-              (league) => league.id === leagueCode
-            );
-          });
-    },
-    availableList() {
-      return this.availableLeagues.filter(
-        (league) => !this.leagues.includes(league.id)
+      return this.$store.state.leagues.map(
+        (leagueCode) => this.getData(leagueCode).info
       );
+    },
+  },
+  methods: {
+    async fetchData() {
+      this.loading = true;
+      const { data } = await footballApi.get("competitions?plan=TIER_ONE");
+      this.availableList = data.competitions.filter(
+        (competition) => !this.leagues.include(competition.id)
+      );
+      this.loading = false;
     },
   },
 };
