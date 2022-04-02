@@ -5,6 +5,7 @@ import { LEAGUE, FETCH_DATA } from "./league/types";
 import team from "./team";
 import { TEAM } from "./team/types";
 import { storageService } from "@/services";
+import { SET_LEAGUES, INIT_LEAGUE } from "./types";
 
 Vue.use(Vuex);
 
@@ -13,17 +14,16 @@ export default new Vuex.Store({
     leagues: [],
   },
   mutations: {
-    setLeagues(state, leagues) {
+    [SET_LEAGUES](state, leagues) {
       state.leagues = leagues;
     },
   },
   actions: {
-    async initLeague({ dispatch }) {
+    async [INIT_LEAGUE]({ commit, dispatch }) {
       if (storageService.has("leagues")) {
         const leagues = storageService.get("leagues");
-
         const promises = [];
-        for (league of leagues) {
+        for (const league of leagues) {
           const promise = dispatch(`${LEAGUE}/${FETCH_DATA}`, league, {
             root: true,
           });
@@ -31,6 +31,7 @@ export default new Vuex.Store({
         }
 
         await Promise.all(promises);
+        commit(SET_LEAGUES, leagues);
       }
       return true;
     },

@@ -74,9 +74,9 @@ export default {
     async fetchData() {
       this.loading = true;
       const { data } = await footballApi.get("competitions?plan=TIER_ONE");
-      this.availableList = data.competitions.filter(
-        (competition) => !this.leagues.include(competition.id)
-      );
+      this.availableList = data.competitions.filter((competition) => {
+        return !this.leagues.includes(competition.id);
+      });
       this.loading = false;
     },
   },
