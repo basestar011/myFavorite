@@ -1,10 +1,14 @@
 <template>
-  <SettingsLeague />
+  <v-row>
+    <v-col cols="6">
+      <SettingsLeague />
+    </v-col>
+  </v-row>
 </template>
 
 <script>
 import { SettingsLeague } from "@settings";
-import { INIT_LEAGUE } from "@/store/types";
+import { INIT_DATA } from "@/store/types";
 
 export default {
   name: "SettingsPage",
@@ -12,7 +16,7 @@ export default {
     SettingsLeague,
   },
   async created() {
-    await this.$store.dispatch(INIT_LEAGUE);
+    await this.$store.dispatch(INIT_DATA);
   },
 };
 </script>

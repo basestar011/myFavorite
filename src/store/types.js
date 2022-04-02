@@ -1,5 +1,8 @@
+// state
+export const STATE_SUBSCRIPTION = "subscription";
+
 // mutations
-export const SET_LEAGUES = "setLeagues";
+export const SET_SUBSCRIPTION = "setSubscription";
 
 // actions
-export const INIT_LEAGUE = "initLeague";
+export const INIT_DATA = "initData";
