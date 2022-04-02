@@ -65,7 +65,6 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
-    console.log(this.$vuetify.breakpoint);
   },
 };
 </script>
