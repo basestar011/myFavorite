@@ -25,7 +25,7 @@
           {{ result.text }}
         </v-chip>
       </template>
-      <v-chip
+      <!-- <v-chip
         v-else
         x-small
         color="orange"
@@ -33,7 +33,7 @@
         class="mx-1 px-1 font-weight-bold"
       >
         예정
-      </v-chip>
+      </v-chip> -->
     </div>
   </div>
 </template>

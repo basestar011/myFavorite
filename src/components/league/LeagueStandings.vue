@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" class="d-flex justify-space-between align-center">
-        <span class="text-h5">내 관심 해외 축구 리그</span>
+        <span class="text-h5">내 관심 축구 리그</span>
         <span>
           <router-link to="/settings" class="d-flex align-center">
             설정&nbsp;

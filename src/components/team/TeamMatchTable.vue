@@ -9,7 +9,7 @@
       </thead>
       <tbody>
         <tr v-for="match in matches" :key="match.id">
-          <td>
+          <td class="text-caption px-1">
             {{ match.utcDate | formatDate("YYYY.MM.DD. HH:mm (dd)") }}
             <v-icon v-if="isHome(match)" small>mdi-home</v-icon>
           </td>
@@ -49,11 +49,11 @@ export default {
 
 <style>
 .match-header1 {
-  min-width: 200px;
+  min-width: 165px;
 }
 
 .match-header2 {
-  min-width: 270px;
+  min-width: 245px;
 }
 .match_score {
   font-weight: 700;

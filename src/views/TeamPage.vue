@@ -13,24 +13,37 @@
           </v-col>
         </v-row>
         <v-row v-if="loading">
-          <v-col cols="12" md="7" lg="7" xl="7" sm="12">
+          <v-col cols="12" md="6" lg="6" xl="6" sm="12">
             <BasicSkeletonLoader type="table" />
           </v-col>
-          <v-col cols="12" md="5" lg="5" xl="5" sm="12">
+          <v-col cols="12" md="6" lg="6" xl="6" sm="12">
             <BasicSkeletonLoader type="table" />
           </v-col>
         </v-row>
         <v-row v-else>
-          <v-col cols="12" md="7" lg="7" xl="7" sm="12">
-            <div>
-              <span class="text-h5">대회 일정</span>
+          <v-col cols="12" md="6" lg="6" xl="6" sm="12">
+            <div class="mb-2">
+              <span class="text-h5">참가 중인 대회</span>
               <TeamCompetition :competitions="info.activeCompetitions" />
             </div>
-            <TeamMatchTable :matches="matches" :teamId="info.id" />
-          </v-col>
-          <v-col cols="12" md="5" lg="5" xl="5" sm="12">
+            <div class="pt-2 mb-2">
+              <span class="text-h5">이후 경기 일정</span>
+              <TeamMatchTable
+                :matches="filterMatch(matches, 'SCHEDULED')"
+                :teamId="info.id"
+              />
+            </div>
             <div class="text-h5 mr-2 my-2">선수단</div>
             <TeamSquadTable :squad="info.squad" />
+          </v-col>
+          <v-col cols="12" md="6" lg="6" xl="6" sm="12">
+            <div class="pt-2 mb-2">
+              <span class="text-h5">최근 경기 결과</span>
+              <TeamMatchTable
+                :matches="filterMatch(matches, 'FINISHED')"
+                :teamId="info.id"
+              />
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -65,6 +78,11 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
+  },
+  methods: {
+    filterMatch(matches, status) {
+      return matches.filter((match) => match.status === status);
+    },
   },
 };
 </script>
