@@ -1,5 +1,5 @@
 <template>
-  <v-simple-table class="elevation-1">
+  <v-simple-table class="elevation-1 mt-3">
     <template #default>
       <thead>
         <tr>

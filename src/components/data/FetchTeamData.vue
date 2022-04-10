@@ -23,7 +23,9 @@ export default {
     },
   },
   async created() {
-    await this.$store.dispatch(`${TEAM}/${FETCH_ALL_DATA}`, this.code);
+    if (this.$store.state[TEAM].id !== this.code) {
+      await this.$store.dispatch(`${TEAM}/${FETCH_ALL_DATA}`, this.code);
+    }
     this.loading = false;
   },
   data() {

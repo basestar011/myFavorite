@@ -33,8 +33,10 @@ export default {
   actions: {
     async [FETCH_ALL_DATA]({ commit, dispatch }, teamId) {
       commit(SET_ID, teamId);
-      await dispatch(FETCH_INFO_DATA, teamId);
-      await dispatch(FETCH_MATCH_DATA, teamId);
+      const infoPromise = dispatch(FETCH_INFO_DATA, teamId);
+      const matchPromise = dispatch(FETCH_MATCH_DATA, teamId);
+      await Promise.all([infoPromise, matchPromise]);
+
       return true;
     },
     async [FETCH_INFO_DATA]({ commit }, teamId) {

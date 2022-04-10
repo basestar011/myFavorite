@@ -3,6 +3,7 @@
     <template #default>
       <thead>
         <tr>
+          <th class="text-left">포지션</th>
           <th class="text-left">이름</th>
           <th class="text-left">나이</th>
           <th class="text-left">국적</th>
@@ -10,6 +11,9 @@
       </thead>
       <tbody>
         <tr v-for="player in squad" :key="player.id">
+          <td>
+            {{ player.position }}
+          </td>
           <td>
             {{ player.name }}
           </td>
