@@ -1,6 +1,12 @@
 <template>
   <v-row>
-    <v-col cols="6">
+    <v-col
+      :cols="$store.state.small"
+      :sm="$store.state.wide"
+      :md="$store.state.wide"
+      :lg="$store.state.wide"
+      :xl="$store.state.wide"
+    >
       <SettingsLeague />
     </v-col>
   </v-row>

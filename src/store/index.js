@@ -17,6 +17,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    small: 12,
+    wide: 6,
     subscription: storageService.get("subscription") || [],
   },
   getters: {
