@@ -6,8 +6,8 @@ export const LIST = "list";
 
 // getters
 export const HAS_COMPETITION = "hasCompetition";
-export const GET_COMPETITION = "getCompetition";
-export const GET_COMPETITIONS = "getCompetitions";
+export const GET_COMPETITION_BY_ID = "getCompetitionById";
+export const GET_COMPETITION_BY_IDS = "getCompetitionByIds";
 export const GET_LIST_EXCEPT = "getListExcept";
 
 // mutations

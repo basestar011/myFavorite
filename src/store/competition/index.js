@@ -2,8 +2,8 @@ import { footballApi } from "@/api";
 import {
   LIST,
   SET_LIST,
-  GET_COMPETITION,
-  GET_COMPETITIONS,
+  GET_COMPETITION_BY_ID,
+  GET_COMPETITION_BY_IDS,
   FETCH_COMPETITIONS,
   HAS_COMPETITION,
   GET_LIST_EXCEPT,
@@ -18,16 +18,19 @@ export default {
     [HAS_COMPETITION](state) {
       return (id) => state[LIST].some((c) => c.id === id);
     },
-    [GET_COMPETITION](state) {
-      return (id) => state[LIST].find((c) => c.id === id);
+    // 특정 리그 정보 가져오기
+    [GET_COMPETITION_BY_ID](state) {
+      return (id) => state[LIST].find((c) => c.id === id) || [];
     },
-    [GET_COMPETITIONS](state) {
-      return (ids) => state[LIST].filter((c) => ids.includes(c.id));
+    // 특정 리그들 정보 가져오기
+    [GET_COMPETITION_BY_IDS](state, getters) {
+      return (ids) => ids.map(getters[GET_COMPETITION_BY_ID]) || [];
     },
     // 특정 리그 제외한 리그 목록 가져올 수 있는 함수 반환
     // except : 제외하고 싶은 리그 코드 배열
     [GET_LIST_EXCEPT](state) {
-      return (except) => state[LIST].filter((c) => !except.includes(c.id));
+      return (except) =>
+        state[LIST].filter((c) => !except.includes(c.id)) || [];
     },
   },
   mutations: {

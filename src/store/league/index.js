@@ -1,9 +1,11 @@
 import { footballApi } from "@/api";
-import { HAS_DATA, GET_DATA, SET_DATA, FETCH_DATA } from "./types";
+import { HAS_DATA, GET_DATA, SET_DATA, FETCH_DATA, SET_REFRESH } from "./types";
 
 export default {
   namespaced: true,
   state: () => ({
+    // 리그 데이터를 다시 가져와야 하는지 여부
+    shouldRefresh: false,
     /**
      * leagueCode : [ info, standings ]
      */
@@ -22,6 +24,9 @@ export default {
   mutations: {
     [SET_DATA](state, { id, info, standings }) {
       state[id] = { info, standings };
+    },
+    [SET_REFRESH](state, refresh) {
+      state.shouldRefresh = refresh;
     },
   },
   actions: {

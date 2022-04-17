@@ -7,7 +7,11 @@ import competition from "./competition";
 import { COMPETITION } from "./competition/types";
 import { TEAM } from "./team/types";
 import { storageService } from "@/services";
-import { SET_SUBSCRIPTION } from "./types";
+import {
+  SET_SUBSCRIPTION,
+  CHANGE_SUBSCRIPTION,
+  GET_SUBSCRIPTION,
+} from "./types";
 
 Vue.use(Vuex);
 
@@ -15,13 +19,23 @@ export default new Vuex.Store({
   state: {
     subscription: storageService.get("subscription") || [],
   },
-  getters: {},
+  getters: {
+    [GET_SUBSCRIPTION](state) {
+      return state.subscription;
+    },
+  },
   mutations: {
     [SET_SUBSCRIPTION](state, subscription) {
       state.subscription = subscription;
     },
   },
-  actions: {},
+  actions: {
+    [CHANGE_SUBSCRIPTION]({ commit }, subscription) {
+      // subscription 변경
+      commit(SET_SUBSCRIPTION, subscription);
+      storageService.set("subscription", subscription);
+    },
+  },
   modules: {
     [LEAGUE]: league,
     [TEAM]: team,
