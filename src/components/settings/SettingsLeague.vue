@@ -11,7 +11,8 @@
         dense
         filled
         label="리그 목록"
-        @focus="fetchData"
+        @focus="getCompetitionData"
+        @input="addSubscription"
         :loading="loading"
         no-data-text=""
       >
@@ -23,22 +24,30 @@
             <v-subheader>해당 리그가 없습니다.</v-subheader>
           </template>
         </template>
+        <template #item="{ item }">
+          <v-list-item-content>
+            <v-list-item-title v-html="item.name"></v-list-item-title>
+          </v-list-item-content>
+        </template>
       </v-autocomplete>
       <v-list subheader dense>
         <v-subheader>등록된 리그</v-subheader>
-        <v-list-item v-for="league in leagues" :key="league.id">
+        <v-list-item
+          v-for="competition in getCompetitionInfo"
+          :key="competition.id"
+        >
           <v-list-item-icon
             class="my-0 mr-2 align-self-center"
             style="height: 40px; width: 40px"
           >
-            <v-img :src="league.emblemUrl" contain />
+            <v-img :src="competition.emblemUrl" contain />
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>{{
-              `league.${league.id}` | translate(league.name)
+              `league.${competition.id}` | translate(competition.name)
             }}</v-list-item-title>
             <v-list-item-subtitle>{{
-              `area.${league.area.id}` | translate(league.area.name)
+              `area.${competition.area.id}` | translate(competition.area.name)
             }}</v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-action>
@@ -55,9 +64,13 @@
 
 <script>
 import BasicSpinner from "@common/BasicSpinner.vue";
-import { footballApi } from "@/api";
+import {
+  COMPETITION,
+  FETCH_COMPETITIONS,
+  GET_LIST_EXCEPT,
+  GET_COMPETITION,
+} from "@/store/competition/types";
 import { mapGetters } from "vuex";
-import { LEAGUE, GET_DATA } from "@/store/league/types";
 
 export default {
   name: "SettingsLeague",
@@ -66,27 +79,41 @@ export default {
   },
   data() {
     return {
-      selectedLeague: "",
+      selectedLeague: "", // 관심리그에서 리그를 선택한 값
+      availableList: [], // 선택할 수 있는 리그 목록
       loading: false,
-      availableList: [],
     };
   },
+  async created() {
+    // 선택할 수 있는 리그 목록이 없다면 api call
+    if (this.$store.state.competition.list.length === 0) {
+      this.loading = true;
+      await this.$store.dispatch(`${COMPETITION}/${FETCH_COMPETITIONS}`);
+      this.getCompetitionData();
+      this.loading = false;
+    }
+  },
   computed: {
-    ...mapGetters(LEAGUE, { getData: GET_DATA }),
-    leagues() {
-      return this.$store.state.leagues.map(
-        (leagueCode) => this.getData(leagueCode).info
-      );
+    ...mapGetters(COMPETITION, {
+      getCompetition: GET_COMPETITION,
+    }),
+    getCompetitionInfo() {
+      return this.$store.state.competition.list.length > 0
+        ? this.$store.state.subscription.map((code) =>
+            this.getCompetition(code)
+          )
+        : [];
     },
   },
   methods: {
-    async fetchData() {
-      this.loading = true;
-      const { data } = await footballApi.get("competitions?plan=TIER_ONE");
-      this.availableList = data.competitions.filter((competition) => {
-        return !this.leagues.includes(competition.id);
-      });
-      this.loading = false;
+    // competition store에서 subscription 을 제외한 리그 목록 가져오기
+    getCompetitionData() {
+      this.availableList = this.$store.getters[
+        `${COMPETITION}/${GET_LIST_EXCEPT}`
+      ](this.$store.state.subscription);
+    },
+    addSubscription() {
+      alert(this.selectedLeague);
     },
   },
 };
